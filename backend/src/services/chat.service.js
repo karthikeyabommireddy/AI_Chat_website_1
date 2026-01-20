@@ -294,7 +294,7 @@ class ChatService {
   }
 
   /**
-   * Delete chat
+   * Delete chat (permanently removes from database)
    */
   async deleteChat(chatId, userId, isAdmin = false) {
     const query = { _id: chatId };
@@ -309,10 +309,13 @@ class ChatService {
       throw new ApiError(HTTP_STATUS.NOT_FOUND, 'Chat not found');
     }
 
-    chat.status = CHAT_STATUS.DELETED;
-    await chat.save();
+    // Delete all messages associated with this chat
+    await Message.deleteMany({ chatId: chatId });
+    
+    // Permanently delete the chat
+    await Chat.deleteOne({ _id: chatId });
 
-    logger.info(`Chat deleted: ${chatId} by user: ${userId}`);
+    logger.info(`Chat permanently deleted: ${chatId} by user: ${userId}`);
 
     return { message: 'Chat deleted successfully' };
   }
