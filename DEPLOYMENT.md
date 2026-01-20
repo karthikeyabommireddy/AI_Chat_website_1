@@ -81,7 +81,7 @@ Click **"Advanced"** → **"Add Environment Variable"** and add:
 | `JWT_SECRET` | (generate a random string - use https://randomkeygen.com) |
 | `AI_PROVIDER` | `google` |
 | `GOOGLE_API_KEY` | `AIzaSyAGNnkdvGgDVPaIUYA8bLtSPQkOt2xZFmg` |
-| `GEMINI_MODEL` | `gemini-2.0-flash-exp` |
+| `GEMINI_MODEL` | `gemini-2.5-flash` |
 | `CORS_ORIGIN` | (leave empty for now, update after deploying frontend) |
 
 ### 2.4 Create Service
