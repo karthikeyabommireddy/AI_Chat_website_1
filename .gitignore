@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Environment files (keep examples)
+.env
+.env.local
+.env.production
+!.env.example
+!.env.production.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Testing
+coverage/
+
+# Uploads (keep folder structure)
+uploads/documents/*
+uploads/avatars/*
+!uploads/documents/.gitkeep
+!uploads/avatars/.gitkeep
+
+# Misc
+*.tmp
+*.temp
+.cache/
