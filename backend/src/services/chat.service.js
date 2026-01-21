@@ -108,7 +108,13 @@ class ChatService {
         }
       };
     } catch (error) {
-      logger.error('AI response generation failed:', error);
+      logger.error('AI response generation failed:', {
+        message: error.message,
+        stack: error.stack,
+        name: error.name,
+        code: error.code
+      });
+      console.error('FULL AI ERROR:', error);
 
       // Save error message
       const errorMessage = await Message.create({
