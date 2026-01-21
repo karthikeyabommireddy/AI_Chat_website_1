@@ -119,7 +119,7 @@ class GoogleProvider extends AIProvider {
   constructor() {
     super({
       apiKey: process.env.GOOGLE_API_KEY,
-      model: process.env.GOOGLE_MODEL || 'gemini-pro'
+      model: process.env.GEMINI_MODEL || process.env.GOOGLE_MODEL || 'gemini-2.5-flash'
     });
     this.genAI = new GoogleGenerativeAI(this.config.apiKey);
   }
@@ -281,7 +281,11 @@ class AIService {
     try {
       return await provider.generateResponse(messages, systemPrompt);
     } catch (error) {
-      logger.error(`AI generation error (${provider.constructor.name}):`, error);
+      logger.error(`AI generation error (${provider.constructor.name}):`, {
+        message: error.message,
+        stack: error.stack,
+        model: provider.config?.model
+      });
       throw error;
     }
   }
